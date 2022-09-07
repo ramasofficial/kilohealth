@@ -1,8 +1,13 @@
-## Kilo Health Academy task
+# Kilo Health Academy task
 
-This is the solution for the admissions tasks for Kilo Health PHP Academy.
+<p>This is the solution for the admissions tasks for Kilo Health PHP Academy.</p>
+<p>The script collects product offer JSON data from a HTTP endpoint whose URL is specified inside the script. The app hosts a route at 'localhost:8000/api/json' which delivers a stock JSON response. A remote endpoint can be used by specifying its URL inside 'task/app/run.php'.</p>
+<p>Using one of three command line parameters can either:</p> 
+<li>count the offers belonging to a specified <b>price range</b>;</li>
+<li>count offers of a specific vendor by giving a <b>vendor ID</b>;</li>
+<li>count the offers whose titles contain a given <b>keyword</b>.</li>
 
-# Usage
+## Usage
 
 Clone this repository, enter 'task' folder using Powershell or cmd.exe and run
 
@@ -15,16 +20,28 @@ to run the Laravel server. Then open another Powershell and cmd.exe window, ente
 ```
 php run.php count_by_price_range <price_from_float> <price_to_float>
 ```
-to count offers belonging to the specified price range.
+to count offers belonging to the specified price range,
 
-Or run
+or run
 ```
 php run.php count_by_vendor_id <non_negative_integer>
 ```
-to count offers from a vendor specified by vendor ID.
+to count offers from a vendor specified by vendor ID,
 
-Or run
+or run
 ```
 php run.php count_by_keyword <string_without_spaces>
 ```
 to count offers with a specific keyword (substring) in the title.
+
+## Tests
+
+Enter 'task' directory and run
+```
+php artisan test
+```
+to run the unit tests for this app.
+
+## Documentation
+
+### App\Classes\ConsoleArgumentInfo
