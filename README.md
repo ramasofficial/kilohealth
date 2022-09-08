@@ -8,6 +8,7 @@
 <li>count the offers whose titles contain a given <b>keyword</b>.</li>
 
 ## Usage
+<p><b>NOTE</b>: all files pertaining to the solution can be found in '/task/app' and its subfolders.</p>
 
 Clone this repository, enter 'task' folder using Powershell or cmd.exe and run
 
