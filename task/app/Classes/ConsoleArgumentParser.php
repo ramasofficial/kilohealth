@@ -32,7 +32,6 @@ class ConsoleArgumentParser {
      */
     public function parse (array $argv): ConsoleArgumentInfo {
         $console_arg_info = new ConsoleArgumentInfo();
-        $console_arg_info->setMessage("\nError: the script requires one of the following command line arguments:\n\tphp run.php count_by_price_range <lower_price_number> <higher_price_number>\n\tphp run.php count_by_vendor_id <positive_integer>\n\tphp run.php count_by_keyword <keyword_string>\n");
 
         if (count($argv) < 2) {
             $console_arg_info->setOption("undefined");
@@ -89,6 +88,11 @@ class ConsoleArgumentParser {
             } else {
                 $console_arg_info->setMessage("\nError: 'count_by_keyword' requires one string argument:\n\tphp run.php count_by_keyword <keyword_string>\n");
             }
+        }
+
+        if ($console_arg_info->getOption() === "unsupported") {
+            $console_arg_info->setSuccess(false);
+            $console_arg_info->setMessage("\nError: the script requires one of the following command line arguments:\n\tphp run.php count_by_price_range <lower_price_number> <higher_price_number>\n\tphp run.php count_by_vendor_id <positive_integer>\n\tphp run.php count_by_keyword <keyword_string>\n");
         }
 
         return $console_arg_info;
