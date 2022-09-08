@@ -2,6 +2,13 @@
 
 namespace App\Classes;
 
+/*
+ * This class is used to cleanly store and handle the parsed output of
+ * command line argument parser.
+ * It is also passed into App\Classes\Counters\CounterFactory::getContent
+ * to construct the counter according to the provided option.
+ */
+
 class ConsoleArgumentInfo {
     private string $option;
     private array $values;

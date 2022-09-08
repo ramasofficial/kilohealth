@@ -1,5 +1,15 @@
 <?php
 
+/*
+ * @author Dominykas Eičinas
+ *
+ * This script takes one of three possible options (count_by_price_range, count_by_vendor_id,
+ * count_by_keyword) and retrieves data from a HTTP endpoint specified by $http_endpoint_url
+ * variable. It then counts the offers that fulfill the criteria drawn by command line arguments.
+ * Logging is implemented and can be enabled/disabled by setting $do_logging to true or false.
+ * echo'ed strings give a good outline of what steps are being taken in the code.
+ */
+
 use App\Classes\ConsoleArgumentParser;
 use App\Classes\JSONReader;
 use App\Classes\Offer;
@@ -13,9 +23,8 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 //------------------------------------------------------------------------
-/*
-    For the route, go to 'task/routes/api.php'
-*/
+
+
 $http_endpoint_url = "localhost:8000/api/offers";
 $do_logging = true;
 

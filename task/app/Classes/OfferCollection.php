@@ -7,10 +7,10 @@ use App\Interfaces\OfferCollectionInterface;
 use App\Interfaces\OfferInterface;
 
 /*
-    I extended a simple collection as it is sufficient for this task.
-    Interface implementation uses existing Collection methods.
+ * I extended the Laravel Collection as it is sufficient for this task.
+ * Interface implementation uses existing Collection methods.
+ * Logging can be enabled inside the constructor.
 */
-
 class OfferCollection extends Collection implements OfferCollectionInterface {
 
     function __construct($array, $do_logging) {

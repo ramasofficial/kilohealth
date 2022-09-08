@@ -15,16 +15,28 @@ class ParsedNumberTuple {
     }
 }
 
-// main parser class
+/*
+ * The main parser class that takes $argv and:
+ *      1. decides whether the number of arguments is correct
+ *      2. reads one of three possible options (count_by_price_range, count_by_vendor_id,
+ *         count_by_keyword)
+ *      3. parses the numbers (floats, integers) that are passed in along with the option
+ *      4. prepares a message corresponding to the result (an error message or a success
+ *         message)
+ * ConsoleArgumentParser::parse returns a ConsoleArgumentInfo object containing the success
+ * state, message (error or success), parsed values and option type.
+ */
 class ConsoleArgumentParser {
-
+    /*
+     * Main function that outputs ConsoleArgumentInfo given the command line arguments.
+     */
     public function parse (array $argv): ConsoleArgumentInfo {
         $console_arg_info = new ConsoleArgumentInfo();
+        $console_arg_info->setMessage("\nError: the script requires one of the following command line arguments:\n\tphp run.php count_by_price_range <lower_price_number> <higher_price_number>\n\tphp run.php count_by_vendor_id <positive_integer>\n\tphp run.php count_by_keyword <keyword_string>\n");
 
         if (count($argv) < 2) {
             $console_arg_info->setOption("undefined");
             $console_arg_info->setSuccess(false);
-            $console_arg_info->setMessage("\nError: the script requires one of the following command line arguments:\n\tphp run.php count_by_price_range <lower_price_number> <higher_price_number>\n\tphp run.php count_by_vendor_id <positive_integer>\n\tphp run.php count_by_keyword <keyword_string>\n");
             return $console_arg_info;
         }
 
@@ -82,6 +94,9 @@ class ConsoleArgumentParser {
         return $console_arg_info;
     }
 
+    /*
+     *  Used to simplify the option names.
+     */
     private function readOption (string $arg): string {
         switch ($arg) {
             case "count_by_price_range":
@@ -100,11 +115,11 @@ class ConsoleArgumentParser {
     }
 
     /*
-        floatval() is not reliable, because it cannot handle zeros and, for example,
-        floatval('150abc35') === 150 which is undesired.
-        parsePositiveFloat successfully parses '1.5', '11.456789', '3' values, but
-        not the ones that contain anything else than digits or a period.
-    */
+     * floatval() is not reliable, because it cannot handle zeros and, for example,
+     * floatval('150abc35') === 150 which is undesired.
+     * parsePositiveFloat successfully parses '1.5', '11.456789', '3' values, but
+     * not the ones that contain anything else than digits or a period.
+     */
     private function parsePositiveFloat(string $str): ParsedNumberTuple {
         $float = 0;
         $has_encoutered_decimal_point = false;
@@ -141,6 +156,11 @@ class ConsoleArgumentParser {
         return new ParsedNumberTuple(true, $float);
     }
 
+    /*
+     * intval() is not reliable as it cannot handle zeroes, and
+     * intval("10abc99") === 10 which is undesired. This is a pure
+     * non-negative integer parsing function.
+     */
     private function parseNonNegativeInt(string $str): ParsedNumberTuple {
         $int = 0;
 

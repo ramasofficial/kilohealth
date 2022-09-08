@@ -6,6 +6,10 @@ use App\Classes\OfferCollection;
 
 class PriceRangeCounter extends Counter {
 
+    /*
+     * This method counts the offers belonging to a price range given
+     * as command line arguments for the program.
+     */
     public function count(OfferCollection $offers): int {
 
         $count = 0;

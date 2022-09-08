@@ -4,6 +4,11 @@ namespace App\Classes;
 
 use App\Interfaces\OfferInterface;
 
+/*
+ * This data type is used to cleanly transfer offer data within the app.
+ * It only contains getters, as modifying offer information is not
+ * necessary in this app.
+ */
 class Offer implements OfferInterface {
     private int $id;
     private string $title;
