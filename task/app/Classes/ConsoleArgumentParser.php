@@ -71,7 +71,7 @@ class ConsoleArgumentParser {
                 $console_arg_info->setValues(["vendor_id" => $this->parseNonNegativeInt($argv[2])->number]);
                 $console_arg_info->setMessage("Console arguments successfully parsed. Program will count offers by vendor ID.\n");
             } else {
-                $console_arg_info->setMessage("\nError: 'count_by_vendor_id' requires one non-negative integer argument:\n\tphp run.php count_by_vendor_id <positive_integer>\n");
+                $console_arg_info->setMessage("\nError: 'count_by_vendor_id' requires one non-negative integer argument:\n\tphp run.php count_by_vendor_id <non_negative_integer>\n");
             }
         }
 
